@@ -16,13 +16,13 @@ public class TicTacToeApp {
     }
 
     public void runGame() throws IOException {
-        printCurrentBoard();
+        printStream.println(board.generateBoard());
         promptPlayer(1);
 
         int inputNumber = getUserInput();
         board.addXOrO(inputNumber,'X');
 
-        printCurrentBoard();
+        printStream.println(board.generateBoard());
 
         promptPlayer(2);
         inputNumber = getUserInput();
@@ -33,17 +33,12 @@ public class TicTacToeApp {
         }
         board.addXOrO(inputNumber,'O');
 
-        printCurrentBoard();
+        printStream.println(board.generateBoard());
     }
 
     private int getUserInput() throws IOException {
         String input = bufferedReader.readLine();
         return Integer.parseInt(input);
-    }
-
-    private void printCurrentBoard() {
-        String currentBoard = board.generateBoard();
-        printStream.println(currentBoard);
     }
 
 

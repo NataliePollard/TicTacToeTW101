@@ -37,7 +37,7 @@ public class Board {
     public boolean isTaken(int inputNumber) {
         int col = (inputNumber-1) % 3;
         int row = (inputNumber-1) / 3;
-        return (boardArray[row][col] == ' ');
+        return (boardArray[row][col] != ' ');
     }
 }
 

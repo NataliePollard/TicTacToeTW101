@@ -22,17 +22,18 @@ public class TicTacToeAppTest {
     public void setUp() throws Exception {
 
         printStream = mock(PrintStream.class);
-        board = mock(Board.class);
+        board = mock (Board.class);
         bufferedReader = mock(BufferedReader.class);
         ticTacToeApp = new TicTacToeApp(board, printStream, bufferedReader);
         when(bufferedReader.readLine()).thenReturn("4");
+        when(board.isTaken(4)).thenReturn(true).thenReturn(false);
     }
 
 
     @Test
     public void shouldPromptUserWhenItStarts() throws IOException {
         ticTacToeApp.runGame();
-        String prompt = "Enter a number between 1 and 9 to indicate where you wish to move";
+        String prompt = "Player 1: Enter a number between 1 and 9 to indicate where you wish to move";
         verify(printStream).println(prompt);
     }
 
@@ -48,17 +49,10 @@ public class TicTacToeAppTest {
         verify(board).addXOrO(4,'X');
     }
 
-    @Test
-    public void shouldPrintBoardWithXWhen() throws IOException {
-        ticTacToeApp.runGame();
-        verify(board).addXOrO(4,'X');
-        //verify()
-    }
 
     @Test
     public void shouldPromptWhenLocationTaken() throws IOException {
         ticTacToeApp.runGame();
-        when(bufferedReader.readLine()).thenReturn("4");
         verify(printStream).println("Location already taken");
     }
 
